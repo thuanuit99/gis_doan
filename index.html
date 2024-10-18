@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info company</title>
+
+    <link rel="stylesheet" href="trangchu.css">
+
+    <style>
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #f9faf3;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+        }
+
+
+
+        nav ul li.login {
+            float: right;
+            /* Other styles... */
+        }
+
+        nav {
+            display: fixed;
+            grid-template-columns: 1fr auto;
+            grid-gap: 20px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-image: linear-gradient(to right, #51e6e9, #08575f);
+            /* Adjust colors as needed */
+        }
+    </style>
+    <!-- Thêm thanh diêu khien -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="qltaixe.html" class="ft-login">Quản lý tài xế</a></li>
+            <li><a href="qlgt.html" class="ft-login">Quản lý giao thông</a></li>
+            <li><a href="qlchohang.html" class="ft-login">Quản lý giao nhận hàng</a></li>
+            <li class="login"><a href="login.html">Đăng nhập</a></li>
+        </ul>
+    </nav>
+    <!-- Thêm thanh diêu khien -->
+</head>
+<script>
+    let isUserLoggedIn = false; 
+
+    document.querySelectorAll('.ft-login').forEach(link => {
+            link.addEventListener('click', function(event) {
+                if (!isUserLoggedIn) { 
+                    event.preventDefault(); 
+                    alert("Bạn cần đăng nhập để tiếp tục.");
+                    window.location.href = "/login.html"; 
+                }
+            });
+        });
+</script>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;">
+        <div class="header-title" style="flex: 1; text-align: center;">
+        <h1>Công Ty TNHH Vận Tải A</h1>
+        </div>
+        <div class="header-update" style="flex: 1; text-align: right;">
+        <p>Ngày cập nhật gần nhất: 14/11/2013</p>
+        </div>
+        <div class="header-contact" style="flex: 1; text-align: right;">
+        <address>
+            <p>83 Đường Phan Trung, Kp. 2, P. Tân Mai, Tp. Biên Hòa, Đồng Nai</p>
+            <p>(0251) 3825031</p>
+            <p>phucuonga@vnn.vn</p>
+        </address>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <div class="image-container">
+                <div class="image-row1">
+                    <img src="5ton-truck.png" alt="5-ton truck" readonly>
+                    <h2> Loại xe tải 1,5 đến 5 tấn</h2>
+                </div>
+                <div class="image-row2">
+                    <img src="15ton-truck.png" alt="15-ton truck" readonly>
+                    <h2> Loại xe tải 8 đến 15 tấn</h2>
+                </div>
+
+            </div>
+
+
+            <div class="text-container">
+
+                <h2>Giới thiệu công ty</h2>
+                <p>Công ty Vận tải Đường bộ Phú Cường A là công ty chuyên cung cấp dịch vụ vận tải bằng
+                    đường bộ. Công
+                <p>Công ty Vận tải A là công ty chuyên cung cấp dịch vụ vận tải bằng đường bộ. Công ty từ lúc
+                    có 1 đầu xe, đến nay đã có trên 40 xe các loại từ 1 tấn đến 15 tấn. Đội ngũ lái xe có tay nghề,
+                    trong đó có
+                    nhiều lái xe là Đảng viên thuộc Chi Bộ công ty.</p>
+
+                <section>
+                    <h3>Ngành nghề kinh doanh</h3>
+                    <ul>
+                        <li>Vận Tải Đường Bộ</li>
+                        <li>Vận Tải - Công Ty Vận Tải và Đại Lý Vận Tải</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Loại hình kinh doanh</h3>
+                    <ul>
+                        <li>Kinh Doanh Dịch Vụ</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Thị trường chính</h3>
+                    <ul>
+                        <li>Miền Trung, Miền Nam</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Sản phẩm và dịch vụ</h3>
+                    <ul>
+                        <li>Đại lý vận tải</li>
+                        <li>Vận tải đường bộ</li>
+                        <li>Dịch vụ vận tải hàng hóa trong tỉnh thành phố</li>
+                        <li>Vận tải</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Hồ sơ công ty</h3>
+                    <ul>
+                        <li>Tên công ty: CÔNG TY TNHH VẬN TẢI A</li>
+
+                        <!-- <li>Tên công ty: CÔNG TY TNHH VẬN TẢI A</li> -->
+
+                        <li>Loại hình kinh doanh: Kinh Doanh Dịch Vụ</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+</body>
+
+</html>

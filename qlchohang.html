@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form điều xe</title>
+
+    <link rel="stylesheet" href="trangchu.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        section {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-basis: 45%;
+        }
+
+        .form-group label {
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="datetime-local"] {
+            flex: 1;
+            padding: 8px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        h1 {
+            display: flex;
+            grid-template-columns: 1fr auto;
+            grid-gap: 20px;
+            padding: 30px;
+            background-image: linear-gradient(to right, #e6a821, #08575f);
+
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="qltaixe.html">Quản lý xe - tài xế</a></li>
+            <li><a href="qlgt.html">Quản lý giao thông</a></li>
+            <li><a href="qlchohang.html">Quản lý giao nhận hàng</a></li>
+            <li class="login"><a href="index.html">Đăng Xuất</a></li>
+        </ul>
+    </nav>
+
+    <div>
+        <h1>QUẢN LÝ GIAO NHẬN HÀNG</h1>
+
+        <section>
+            <h2>Thông tin chuyến xe</h2>
+            <form id="tripForm">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="tripId">ID Chuyến xe:</label>
+                        <input type="number" id="tripId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicleId">ID xe (Biển số xe):</label>
+
+                        <select id="vehicleId" required>
+                            <option value="">Chọn xe</option>
+                            <option value="60C-6638">60C-6638</option>
+                            <option value="60C-10010">60C-10010</option>
+                            <option value="60C-10292">60C-10292</option>
+                            <option value="60C-12085">60C-12085</option>
+                            <option value="60C-13059">60C-13059</option>
+                            <option value="60C-28571">60C-28571</option>
+                            <option value="60C-28895">60C-28895</option>
+                            <option value="60C-42794">60C-42794</option>
+                            <option value="60C-42794">60C-42794</option>
+                            <option value="60H-12065">60H-12065</option>
+                            <option value="60M-7912">60M-7912</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicleType">Loại xe:</label>
+                        <input type="text" id="vehicleType" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="driverId">ID tài xế:</label>
+                        <input type="text" id="driverId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sellingCompanyId">Địa chỉ lấy hàng:</label>
+                        <input type="text" id="sellingCompanyId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="buyingCompanyId">Địa chỉ giao hàng:</label>
+                        <input type="text" id="buyingCompanyId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalTime">Thời gian di chuyển dự kiến (phút):</label>
+                        <input type="number" id="totalTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickupTime">Thời điểm lấy hàng:</label>
+                        <input type="datetime-local" id="pickupTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryTime">Thời điểm giao hàng:</label>
+                        <input type="datetime-local" id="deliveryTime" required>
+                    </div>
+                </div>
+                <button type="submit">Thêm chuyến xe</button>
+            </form>
+        </section>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Chuyến xe</th>
+                    <th>ID xe</th>
+                    <th>Loại xe</th>
+                    <th>ID tài xế</th>
+                    <th>ĐC lấy hàng</th>
+                    <th>Đc giao hàng</th>
+                    <th>Thời gian di chuyển dự kiến</th>
+                    <th>Thời điểm lấy hàng</th>
+                    <th>Thời điểm giao hàng</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="tripList">
+                <!-- Danh sách chuyến xe sẽ được thêm vào đây -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById('tripForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            addTrip();
+        });
+
+        function addTrip() {
+            const tripId = document.getElementById('tripId').value;
+            const vehicleId = document.getElementById('vehicleId').value;
+            const vehicleType = document.getElementById('vehicleType').value;
+            const driverId = document.getElementById('driverId').value;
+            const sellingCompanyId = document.getElementById('sellingCompanyId').value;
+            const buyingCompanyId = document.getElementById('buyingCompanyId').value;
+            const totalTime = document.getElementById('totalTime').value;
+            const pickupTime = document.getElementById('pickupTime').value;
+            const deliveryTime = document.getElementById('deliveryTime').value;
+
+            const tripList = document.getElementById('tripList');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+            <td>${tripId}</td>
+            <td>${vehicleId}</td>
+            <td>${vehicleType}</td>
+            <td>${driverId}</td>
+            <td>${sellingCompanyId}</td>
+            <td>${buyingCompanyId}</td>
+            <td>${totalTime}</td>
+            <td>${pickupTime}</td>
+            <td>${deliveryTime}</td>
+            <td><button onclick="removeTrip(this)">Xóa</button></td>
+        `;
+
+            tripList.appendChild(row);
+
+            // Reset form
+            document.getElementById('tripForm').reset();
+        }
+
+        function removeTrip(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+
+</body>
+
+</html>

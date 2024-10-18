@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qlgiaothong</title>
+
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- Bootstrap 4 JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Bootstrap Datepicker JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://js.arcgis.com/4.28/"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="trangchu.css">
+   
+</head>
+
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="qltaixe.html">Quản lý xe - tài xế</a></li>
+            <li><a href="qlgt.html">Quản lý giao thông</a></li>
+            <li><a href="qlchohang.html">Quản lý giao nhận hàng</a></li>
+            <li class="login"><a href="index.html">Đăng xuất</a></li>
+        </ul>
+    </nav>
+
+    <div class="card" style="top:50px;position:fix;">
+        <div class="card-header bg-gray">
+            <h5>Giám sát xe</h5>
+        </div>
+        <div class="card-body">
+
+            <form>
+                <div class="row" style="margin-bottom: 10px;">
+
+                    <input type="text" class="form-control" id="datePicker" placeholder="Select a date" required>
+                    <select name="xe" id="xe" required>
+                        <option value="">Chọn xe</option>
+                        <option value="60C-6638">60C-6638</option>
+                        <option value="60C-10010">60C-10010</option>
+                        <option value="60C-10292">60C-10292</option>
+                        <option value="60C-12085">60C-12085</option>
+                        <option value="60C-13059">60C-13059</option>
+                        <option value="60C-28571">60C-28571</option>
+                        <option value="60C-28895">60C-28895</option>
+                        <option value="60C-42794">60C-42794</option>
+                        <option value="60C-42794">60C-42794</option>
+                        <option value="60H-12065">60H-12065</option>
+                        <option value="60M-7912">60M-7912</option>
+                    </select>
+                    <button class="btn btn-primary" id="search">Tìm kiếm</button>
+
+                </div>
+
+            </form>
+
+            <div id="content" style="line-height: px;">
+                <div class="d-none" style="padding-top: 30px" id="loading">
+                    <button class="btn btn-primary" disabled>
+                        <span class="spinner-border spinner-border-sm"></span>
+                        Loading..
+                    </button>
+                </div>
+
+
+            </div>
+            <div style="float:right;position: absolute; bottom: 16px; right: 0;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chugiai">Chú
+                    giải</button>
+                <button type="button" class="btn btn-primary" id="detail" data-toggle="modal"
+                    data-target="#myModal">Điểm kẹt xe</button>
+                <button type="button" class="btn btn-primary" id="previous">Previous</button>
+                <button type="button" class="btn btn-primary" id="next">Next</button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="viewDiv" style="top:50px" ;>
+
+
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Những điểm kẹt xe</h4>
+                </div>
+                <div class="modal-body" id="modal-content">
+                    <p>Vui lòng chọn ngày và xe trước.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="chugiai" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Chú thích bản đồ</h4>
+                </div>
+                <div class="modal-body" id="modal-content">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Kí hiệu</th>
+                                <th>Giải thích</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="start.png" alt="Ký Hiệu 1" class="symbol-image"></td>
+                                <td>Điểm bắt đầu</td>
+                            </tr>
+                            <tr>
+                                <td><img src="end.png" alt="Ký Hiệu 2" class="symbol-image"></td>
+                                <td>Điểm kết thúc</td>
+                            </tr>
+                            <tr>
+                                <td><img src="circle.png" alt="Ký Hiệu 3" class="symbol-image"></td>
+                                <td>Điểm kẹt xe</td>
+                            </tr>
+                            <tr>
+                                <td><img src="localxe.jpg" alt="Ký Hiệu 4" class="symbol-image"></td>
+                                <td>Vị trí của xe theo thời gian</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('#datePicker').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true,
+            startDate: '01/07/2024',
+            endDate: '31/08/2024'
+        });
+    })
+</script>
+
+<script src="refactor.js"></script>
+
+
+</html>

@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+/* Add more CSS styles as needed */
+
+header {
+    display: flex;
+    grid-template-columns: 1fr auto;
+    grid-gap: 10px;
+    padding: 0px;
+    background-image: linear-gradient(to right, #e6a821, #08575f);
+    /* Adjust colors as needed */
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    /* Adjust column widths as needed */
+    gap: 20px;
+    /* Spacing between columns */
+}
+
+.text-container {
+    /* Add any necessary styles for the text container */
+}
+
+.image-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    /* Divide into two rows, one with 1/4 height and one with 3/4 height */
+    gap: 0px;
+}
+
+
+
+.image-row1 img,
+.image-row2 img {
+    width: 70%;
+    height: 70%;
+
+    /* Scale image to cover the container, cropping if necessary */
+}
+
+.h2 {
+    text-align: center;
+}

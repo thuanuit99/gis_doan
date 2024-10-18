@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý tài xế</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            /* Căn giữa cho thẻ h2 */
+            margin-bottom: 20px;
+            /* Khoảng cách dưới thẻ h2 */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        section {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            /* Căn chỉnh hai cột */
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-basis: 30%;
+        }
+
+        .form-group label {
+            width: 150px;
+            /* Độ rộng cho label */
+            margin-right: 10px;
+            /* Khoảng cách giữa label và input */
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            flex: none;
+            /* Để input chiếm không gian còn lại */
+            padding: 8px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        h1 {
+            display: flex;
+            grid-template-columns: 1fr auto;
+            grid-gap: 20px;
+            padding: 30px;
+            background-image: linear-gradient(to right, #e6a821, #08575f);
+            /* Adjust colors as needed */
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #f9faf3;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+        }
+
+
+
+        nav ul li.login {
+            float: right;
+            /* Other styles... */
+        }
+
+        nav {
+            display: fixed;
+            grid-template-columns: 1fr auto;
+            grid-gap: 20px;
+            padding: 20px;
+            background-image: linear-gradient(to right, #51e6e9, #08575f);
+            /* Adjust colors as needed */
+        }
+    </style>
+    <!-- Thêm thanh diêu khien -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="qltaixe.html">Quản lý tài xế</a></li>
+            <li><a href="qlgt.html">Quản lý giao thông</a></li>
+            <li><a href="qlchohang.html">Quản lý giao nhận hàng</a></li>
+            <li class="login"><a href="index.html">Đăng Xuất</a></li>
+        </ul>
+    </nav>
+    <!-- Thêm thanh diêu khien -->
+</head>
+
+<body>
+
+    <h1>QUẢN LÝ TÀI XẾ</h1>
+    <section>
+
+        <form id="driverForm">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="id-driver">ID tài xế:</label>
+                    <input type="text" id="id-driver" placeholder="ID Tài xế" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Tên tài xế:</label>
+                    <input type="text" id="name" placeholder="Tên tài xế" required>
+                </div>
+                <div class="form-group">
+                    <label for="license">Số giấy phép:</label>
+                    <input type="text" id="license" placeholder="Số giấy phép" required>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="level">Hạng giấy phép:</label>
+                    <input type="text" id="level" placeholder="Hạng giấy phép" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Tuổi:</label>
+                    <input type="number" id="age" placeholder="Tuổi" required>
+                </div>
+            </div>
+            <button type="submit">Thêm tài xế</button>
+
+            </div>
+        </form>
+    </section>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên tài xế</th>
+                <th>Số giấy phép</th>
+                <th>Hạng giấy phép</th>
+                <th>Tuổi</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody id="driverList">
+            <!-- Danh sách tài xế sẽ được thêm vào đây -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('driverForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            addDriver();
+        });
+
+        function addDriver() {
+            const id_dri = document.getElementById('id-driver').value;
+            const name = document.getElementById('name').value;
+            const license = document.getElementById('license').value;
+            const level = document.getElementById('level').value;
+            const age = document.getElementById('age').value;
+
+            const driverList = document.getElementById('driverList');
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+            <td>${id_dri}</td>
+            <td>${name}</td>
+            <td>${license}</td>
+            <td>${level}</td>
+            <td>${age}</td>
+            <td><button onclick="removeDriver(this)">Xóa</button></td>
+        `;
+
+            driverList.appendChild(row);
+
+            // Reset form
+            document.getElementById('driverForm').reset();
+        }
+
+        function removeDriver(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+
+</body>
+
+</html>
